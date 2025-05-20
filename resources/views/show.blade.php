@@ -11,7 +11,7 @@
                     <h3 class="card-title">{{ $movie->title }}</h3>
                     <p class="card-text">{{ $movie->synopsis }}</p>
                     <p><strong>Actors:</strong> {{ $movie->actors }}</p>
-                    <p><strong>Category:</strong> {{ $movie->category }}</p>
+                    <p><strong>Category:</strong> {{ $movie->category->category_name ?? 'No Category' }}</p>
                     <p><strong>Year:</strong> {{ $movie->year }}</p>
                     <a href="{{ url()->previous() }}" class="btn btn-success">Back</a>
                 </div>

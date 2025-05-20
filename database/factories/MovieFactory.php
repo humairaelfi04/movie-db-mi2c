@@ -27,7 +27,7 @@ class MovieFactory extends Factory
             'title' => $title,
             'slug' => $slug,
             'synopsis' => fake()->paragraph(rand(5,  10)),
-            'category_id' => Category::inRandomOrder()->first(),
+            'category_id' => Category::inRandomOrder()->first()->id ?? null,
             'year' => fake()->year(),
             'actors' => fake()->name() . ', ' . fake()->name() . ', ' . fake()->name(),
             'cover_image' => 'https://picsum.photos/seed/' . Str::random(10) . '/480/640',
