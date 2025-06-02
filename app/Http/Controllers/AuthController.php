@@ -25,9 +25,9 @@ class AuthController extends Controller
             return redirect('/')->with('success', 'Login Successfully, Welcome ' . Auth::user()->name);
         }
 
-        // return back()->withErrors([
-        //     'email' => 'Email not found'
-        // ])->onlyInput('email');
+        return back()->withErrors([
+            'email' => 'Email not found'
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request): RedirectResponse
