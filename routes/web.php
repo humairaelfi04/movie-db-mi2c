@@ -22,3 +22,13 @@ Route::get('/login', [AuthController::class, 'loginForm'])->name('login')->middl
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
+
+// edit
+Route::get('/movies/{id}/edit', [MovieController::class, 'edit'])->name('movies.edit')->middleware('auth');
+
+// update
+Route::put('/movies/{id}', [MovieController::class, 'update'])->name('movies.update')->middleware('auth');
+
+// delete
+Route::delete('/movies/{id}', [MovieController::class, 'destroy'])->name('movies.destroy')->middleware('auth');
+
