@@ -6,6 +6,7 @@ use App\Models\Movie;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MovieController extends Controller
 {
@@ -102,16 +103,21 @@ public function update(Request $request, $id)
 
 public function destroy($id)
 {
-    $movie = Movie::findOrFail($id);
+    if(Gate::allows('delete')){
+        $movie = Movie::findOrFail($id);
+        $movie->delete();
 
-    // hapus cover
-    if ($movie->cover_image && file_exists(public_path('covers/' . $movie->cover_image))) {
-        unlink(public_path('covers/' . $movie->cover_image));
+         return redirect('/')->with('success', 'Movie berhasil dihapus!');
+    }else{
+        abort(403);
     }
 
-    $movie->delete();
 
-    return redirect('/')->with('success', 'Movie berhasil dihapus!');
+    // // hapus cover
+    // if ($movie->cover_image && file_exists(public_path('covers/' . $movie->cover_image))) {
+    //     unlink(public_path('covers/' . $movie->cover_image));
+    // }
+
 }
 
 }
